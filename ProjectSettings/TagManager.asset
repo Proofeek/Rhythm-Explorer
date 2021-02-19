@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Activator
+  - Note
+  - Target
+  - MovPosStart
+  - MovPosFinish
+  - LaserSpot
+  - StartLaser
+  - FinishLaser
+  - MissNote
+  - FinishSong
+  - Laser
+  - Extra
+  - StartKnob
+  - FinishKnob
+  - Button
+  - Slider
+  - ShadowActivator
+  - ShadowDeactivator
+  - Kick
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - myButtonsUI
+  - Input Touches
+  - Transitions
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Lasers
+    uniqueID: 763548833
+    locked: 0
+  - name: Buttons
+    uniqueID: 1147978119
+    locked: 0
+  - name: Targets
+    uniqueID: 3021005203
+    locked: 0
+  - name: UI
+    uniqueID: 3723476037
+    locked: 0
