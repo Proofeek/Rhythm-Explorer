@@ -31,13 +31,13 @@ public class ButtonController2 : MonoBehaviour
 
     void OnTouchDown()
     {
-        theSR.sprite = pressedImage;
+        //theSR.sprite = pressedImage;
         bDown = true;
         if (buttonCollider.canTargetDone)
         {
             Debug.Log("ПОПАЛ В ЦЕЛЬ");
 
-            //buttonCollider.col.SendMessage("StopVFX");
+            buttonCollider.col.SendMessage("StartAnimDisappear");
             
             if((buttonCollider.col.transform.position.y > (gameObject.transform.position.y + 0.45)) || (buttonCollider.col.transform.position.y < (gameObject.transform.position.y - 0.45)))
             {
@@ -54,7 +54,7 @@ public class ButtonController2 : MonoBehaviour
                 Debug.Log("Good hit");
             }
 
-            buttonCollider.col.gameObject.SetActive(false);
+            //buttonCollider.col.gameObject.SetActive(false);
             
         }
         else
@@ -64,21 +64,21 @@ public class ButtonController2 : MonoBehaviour
         }
 
         //light1.gameObject.SetActive(true);
-        light1.GetComponent<Animator>().SetTrigger("ButtonPressed");
+        GetComponent<Animator>().SetBool("ButtonPressed", true);
 
     }
 
     void OnTouchUp()
     {
-        theSR.sprite = defaultImage;
+        //theSR.sprite = defaultImage;
         bDown = false;
         //light1.gameObject.SetActive(false);
-        light1.GetComponent<Animator>().SetTrigger("ButtonUp");
+        GetComponent<Animator>().SetBool("ButtonPressed", false);
     }
 
     void OnTouchStay(Vector2 point)
     {
-            theSR.sprite = pressedImage;
+            //theSR.sprite = pressedImage;
             bDown = false;
         //light1.gameObject.SetActive(true);
         //Debug.Log("x= " + point.x);
@@ -87,10 +87,10 @@ public class ButtonController2 : MonoBehaviour
 
     void OnTouchExit()
     {
-        theSR.sprite = defaultImage;
+        //theSR.sprite = defaultImage;
         bDown = false;
         //light1.gameObject.SetActive(false);
-        light1.GetComponent<Animator>().SetTrigger("ButtonUp");
+        GetComponent<Animator>().SetBool("ButtonPressed", false);
     }
     /*
     void OnTriggerEnter2D(Collider2D other)
