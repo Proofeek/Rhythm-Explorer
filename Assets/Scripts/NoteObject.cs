@@ -5,9 +5,7 @@ using UnityEngine.VFX;
 
 public class NoteObject : MonoBehaviour
 {
-    //public GameObject VFX_ink;
-    //public GameObject InkCLone;
-    private bool VfxOn;
+    public int color;
 
     void Start()
     {
@@ -40,17 +38,20 @@ public class NoteObject : MonoBehaviour
         }
     }
     
-    void StopVFX()
+    void StartAnimDisappear()
 	{
-       // InkCLone.GetComponent<VisualEffect>().SendEvent("Stop");
-    }
-    /*
-	private void Update()
-	{
-        if (VfxOn)
+        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<Animation>().Play(PlayMode.StopSameLayer);
+        if(GetComponent<Animation>().isPlaying == false)
 		{
-            VFX_ink.gameObject.transform.position = this.gameObject.transform.position;
-        }
+            gameObject.SetActive(false);
+		}
+    }
+
+    void ChangeColor()
+	{
+        if(color == 1)
+		{
+		}
 	}
-    */
 }
