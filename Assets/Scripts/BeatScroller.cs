@@ -84,7 +84,6 @@ public class BeatScroller : MonoBehaviour
                 //RectTransform lol = iter.GetComponent<TransformPos>().theButton.GetComponent<RectTransform>();
                 //Vector3 pos = Camera.main.ViewportToWorldPoint(lol.position);
                 //iter.transform.position = Camera.main.WorldToViewportPoint(pos);
-                iter.transform.position = iter.GetComponent<TransformPos>().theButton.GetComponent<RectTransform>().transform.position;
                 //var screenToWorldPosition = Camera.main.ScreenToWorldPoint(iter.GetComponent<TransformPos>().theButton.GetComponent<RectTransform>().transform.position);
                 //iter.transform.position = screenToWorldPosition;
 
@@ -108,7 +107,7 @@ public class BeatScroller : MonoBehaviour
         }
 
 
-        transform.position -= new Vector3(0f, -2.0f, 0f);
+        transform.position -= new Vector3(0f, -0.5f, 0f);
         beatTempo = (beatTempo / 60f) * mod;
 
     }
