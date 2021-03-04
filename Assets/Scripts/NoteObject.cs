@@ -7,12 +7,18 @@ public class NoteObject : MonoBehaviour
 {
     public int color;
 
+
+
     void Start()
     {
         GetComponent<SpriteRenderer>().enabled = false;
         //InkCLone = Instantiate(VFX_ink);
         //InkCLone.transform.SetParent(this.gameObject.transform, false);
         //.SetActive(false);
+        if(color == 0)
+		{
+            gameObject.GetComponent<SpriteRenderer>().material.SetVector("Color_HDR", new Vector4(0, 0, 0, 0));
+		}
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,11 +30,12 @@ public class NoteObject : MonoBehaviour
             Debug.Log("fwefwefwe33333333333fwfw");
 
             GetComponent<SpriteRenderer>().enabled = true;
+    
             // GetComponent<UnityEngine.Experimental.Rendering.Universal.ShadowCaster2D>().enabled = true;
             //InkCLone.SetActive(true);
             //InkCLone.GetComponent<VisualEffect>().SendEvent("Start");
-           
-            
+
+
         }
             
 
@@ -41,17 +48,11 @@ public class NoteObject : MonoBehaviour
     void StartAnimDisappear()
 	{
         GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<Animation>().Play(PlayMode.StopSameLayer);
-        if(GetComponent<Animation>().isPlaying == false)
+        //GetComponent<Animation>().Play(PlayMode.StopSameLayer);
+        GetComponent<Animation>().Blend("TargetDisappear", 0.3f, 1.0f);
+        if (GetComponent<Animation>().isPlaying == false)
 		{
             gameObject.SetActive(false);
 		}
     }
-
-    void ChangeColor()
-	{
-        if(color == 1)
-		{
-		}
-	}
 }

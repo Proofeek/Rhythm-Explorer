@@ -13,9 +13,6 @@ public class BeatScroller : MonoBehaviour
     public float modPosForDrums = 0;
     private Spline spline;
 
-    private Vector3 pos;
-    private Vector3 pos1;
-    private Vector3 pos2;
 
     private float posYforLaser;
 
@@ -97,7 +94,7 @@ public class BeatScroller : MonoBehaviour
             }
             else
             {
-                iter.transform.position = new Vector3(iter.GetComponent<TransformPos>().theDrum.gameObject.transform.position.x, iter.GetComponent<TransformPos>().theDrum.gameObject.transform.position.y, 0f);
+               // iter.transform.position = new Vector3(iter.GetComponent<TransformPos>().theDrum.gameObject.transform.position.x, iter.GetComponent<TransformPos>().theDrum.gameObject.transform.position.y, 0f);
             }
         }
 
@@ -108,7 +105,7 @@ public class BeatScroller : MonoBehaviour
         }
 
 
-        transform.position -= new Vector3(0f, -2.0f, 0f);
+        transform.position -= new Vector3(0f, -1.0f, 0f);
         beatTempo = (beatTempo / 60f) * mod;
 
     }
