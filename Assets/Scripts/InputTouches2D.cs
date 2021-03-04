@@ -11,6 +11,60 @@ public class InputTouches2D : MonoBehaviour
     void Update()
     {
 
+#if UNITY_EDITOR
+
+    if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
+        touchesOld = new GameObject[touchList.Count];
+        touchList.CopyTo(touchesOld);
+        touchList.Clear();
+
+            Vector3 touchPosWorld;
+                Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+
+                touchPosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 touchPosWorld2D = new Vector2(touchPosWorld.x, touchPosWorld.y);
+                RaycastHit2D hit = Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward);
+                RaycastHit2D[] colliderHits = Physics2D.RaycastAll(touchPosWorld2D, Camera.main.transform.forward);
+
+                if (Physics2D.Raycast(touchPosWorld2D, Camera.main.transform.forward))
+                {
+                    foreach (RaycastHit2D iter in colliderHits)
+                    {
+                        GameObject recipient = iter.transform.gameObject;
+                        touchList.Add(recipient);
+                        //Debug.Log("ВТОРОЙ IF");
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
+                            //Debug.Log("InputBegan");
+                        }
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            recipient.SendMessage("OnTouchUp", hit.point, SendMessageOptions.DontRequireReceiver);
+                            //Debug.Log("InputUP");
+                        }
+                        if (Input.GetMouseButton(0))
+                        {
+                            recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
+                            //Debug.Log("InputStay");
+                        }
+                    }
+                }
+                    foreach (GameObject g in touchesOld)
+                    {
+                        if (!touchList.Contains(g))
+                        {
+                            g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
+                            //Debug.Log("InputExit2");
+                        }
+                    }
+    }
+
+
+#endif
+
+
         if (Input.touchCount > 0)
         {
             touchesOld = new GameObject[touchList.Count];

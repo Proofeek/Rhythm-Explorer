@@ -7,7 +7,7 @@ public class NoteObject : MonoBehaviour
 {
     public int color;
 
-
+    public Animator targetAnimator;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class NoteObject : MonoBehaviour
             Debug.Log("fwefwefwe33333333333fwfw");
 
             GetComponent<SpriteRenderer>().enabled = true;
-    
+            GetComponent<Animator>().enabled = true;
             // GetComponent<UnityEngine.Experimental.Rendering.Universal.ShadowCaster2D>().enabled = true;
             //InkCLone.SetActive(true);
             //InkCLone.GetComponent<VisualEffect>().SendEvent("Start");
@@ -47,12 +47,16 @@ public class NoteObject : MonoBehaviour
     
     void StartAnimDisappear()
 	{
+
+        GetComponent<Animator>().SetTrigger("Dis");
+
+        /*
         GetComponent<CircleCollider2D>().enabled = false;
         //GetComponent<Animation>().Play(PlayMode.StopSameLayer);
         GetComponent<Animation>().Blend("TargetDisappear", 0.3f, 1.0f);
         if (GetComponent<Animation>().isPlaying == false)
 		{
             gameObject.SetActive(false);
-		}
+		}*/
     }
 }
