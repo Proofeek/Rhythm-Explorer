@@ -133,6 +133,12 @@ public class GameManager : MonoBehaviour
 
     public void NoteMissed()
     {
+
+        if(godMode)
+        {
+            currentHP = max_HP;
+        }
+
         currentCombo = 0;
         ComboText.text = currentCombo.ToString();
 
