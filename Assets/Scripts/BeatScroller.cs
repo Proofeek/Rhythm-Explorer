@@ -5,7 +5,8 @@ using UnityEngine.U2D;
 
 public class BeatScroller : MonoBehaviour
 {
-    public float beatTempo;
+    public float BPM;
+    private float beatTempo;
 
     public bool hasStarted;
 
@@ -13,8 +14,12 @@ public class BeatScroller : MonoBehaviour
     public float modPosForDrums = 0;
     private Spline spline;
 
-
     private float posYforLaser;
+
+    public bool beat16;
+    private float beatInterval16, beatTimer16;
+    public int beatCount16;
+
 
 
     // Start is called before the first frame update
@@ -105,8 +110,8 @@ public class BeatScroller : MonoBehaviour
         }
 
 
-        transform.position -= new Vector3(0f, -1.0f, 0f);
-        beatTempo = (beatTempo / 60f) * mod;
+        transform.position -= new Vector3(0f, -1.2f, 0f);
+        beatTempo = (BPM / 60f) * mod;
 
     }
 
@@ -114,11 +119,19 @@ public class BeatScroller : MonoBehaviour
     {
         if (hasStarted)
         {
-            //Debug.Log(Time.fixedDeltaTime);
             transform.position -= new Vector3(0f, (beatTempo * Time.fixedDeltaTime), 0f);
-            //pos -= new Vector3(0f, (beatTempo * Time.fixedDeltaTime), 0f);
-            //transform.position = Vector3.Lerp (transform.position, pos, 1);
-            //transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, -300f, 0f), beatTempo * Time.deltaTime);
+
+            beat16 = false;
+            beatInterval16 = (60 / BPM);
+            beatTimer16 += Time.fixedDeltaTime;
+            if(beatTimer16 >= beatInterval16)
+			{
+                beatTimer16 -= beatInterval16;
+                beat16 = true;
+                beatCount16++;
+                Debug.Log("D16");
+
+			}
 
         }
 

@@ -54,9 +54,8 @@ public class NoteObject : MonoBehaviour
 	{
 
         GetComponent<Animator>().SetTrigger("Dis");
-
-        /*
         GetComponent<CircleCollider2D>().enabled = false;
+        /*
         //GetComponent<Animation>().Play(PlayMode.StopSameLayer);
         GetComponent<Animation>().Blend("TargetDisappear", 0.3f, 1.0f);
         if (GetComponent<Animation>().isPlaying == false)
