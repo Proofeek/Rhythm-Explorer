@@ -51,7 +51,7 @@ public class ButtonColliderScript : MonoBehaviour
             if (canTargetDone && !theBS.bDown)
             {
                 GameManager.instance.NoteMissed();
-                Debug.Log("МИМО");
+                //Debug.Log("МИМО");
             }
             canTargetDone = false;
         }

@@ -7,6 +7,10 @@ public class BloomByBeat : MonoBehaviour
     public BeatScroller theBS;
 	UnityEngine.Rendering.Universal.Bloom bloom;
 
+	private float t;
+	bool halfBeat;
+	bool KOK;
+
 	void Start()
     {
 		UnityEngine.Rendering.VolumeProfile volumeProfile = GetComponent<UnityEngine.Rendering.Volume>()?.profile;
@@ -20,13 +24,11 @@ public class BloomByBeat : MonoBehaviour
 	// Update is called once per frame
 	private void FixedUpdate()
 	{
-		if (theBS.beat16)
+		t += Time.deltaTime;
+		if (theBS.beat16|| KOK)
 		{
-			bloom.intensity.Override(10.5f);
-		}
-		else
-		{
-			bloom.intensity.Override(1.5f);
+			KOK= true;
+			bloom.intensity.Override(Mathf.Lerp(2.5f,10.5f,t/0.3f));
 		}
 	}
 }

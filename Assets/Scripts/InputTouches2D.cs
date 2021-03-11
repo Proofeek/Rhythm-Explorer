@@ -10,7 +10,7 @@ public class InputTouches2D : MonoBehaviour
     //private RaycastHit hit;
     void Update()
     {
-        /*
+        
 #if UNITY_EDITOR
 
     if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0)){
@@ -62,7 +62,7 @@ public class InputTouches2D : MonoBehaviour
     }
 
 
-#endif*/
+#endif
 
 
         if (Input.touchCount > 0)

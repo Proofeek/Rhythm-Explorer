@@ -112,6 +112,7 @@ public class BeatScroller : MonoBehaviour
 
         transform.position -= new Vector3(0f, -1.2f, 0f);
         beatTempo = (BPM / 60f) * mod;
+        beatInterval16 = (60 / BPM/2 );
 
     }
 
@@ -122,14 +123,15 @@ public class BeatScroller : MonoBehaviour
             transform.position -= new Vector3(0f, (beatTempo * Time.fixedDeltaTime), 0f);
 
             beat16 = false;
-            beatInterval16 = (60 / BPM);
             beatTimer16 += Time.fixedDeltaTime;
             if(beatTimer16 >= beatInterval16)
 			{
-                beatTimer16 -= beatInterval16;
                 beat16 = true;
-                beatCount16++;
-                Debug.Log("D16");
+                beatTimer16 =0;
+                
+                //beatTimer16 -= beatInterval16;
+                //beatCount16++;
+                //Debug.Log("D16");
 
 			}
 
