@@ -105,7 +105,8 @@ public class GameManager : MonoBehaviour
         NoteHit();
 
         globalBadHits++;
-        ComboText.text = "плохо (" + currentCombo.ToString() + ")";
+        //ComboText.text = "плохо (" + currentCombo.ToString() + ")";
+        ComboText.text = "нормально";
     }
 
     public void NoteHitOK()
@@ -114,7 +115,8 @@ public class GameManager : MonoBehaviour
         NoteHit();
 
         globalOKhits++;
-        ComboText.text = "хорошо (" + currentCombo.ToString() + ")";
+        //ComboText.text = "хорошо (" + currentCombo.ToString() + ")";
+        ComboText.text = "хорошо";
     }
 
     public void NoteHitGood()
@@ -123,7 +125,8 @@ public class GameManager : MonoBehaviour
         NoteHit();
 
         globalGoodHits++;
-        ComboText.text = "отлично (" + currentCombo.ToString() + ")";
+        //ComboText.text = "отлично (" + currentCombo.ToString() + ")";
+        ComboText.text = "отлично";
     }
 
     public void LaserHitGetPoints()
@@ -199,6 +202,7 @@ public class GameManager : MonoBehaviour
         }
 
         globalMissedHits++;
+        ComboText.text = "мимо";
 
     }
 
