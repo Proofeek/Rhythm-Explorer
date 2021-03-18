@@ -41,7 +41,7 @@ public class ButtonControllerMenu : MonoBehaviour
 
     IEnumerator ChangePreset()
 	{
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.4f);
         OnButtonUp.Invoke();
     }
 }

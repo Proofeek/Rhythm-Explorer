@@ -209,12 +209,13 @@ public class GameManager : MonoBehaviour
     public void Finish()
     {
         missedText.text = globalMissedHits.ToString();
-        allNotesText.text = totalNotes.ToString();
+        //allNotesText.text = totalNotes.ToString();
         finalscoreText.text = currentScore.ToString("F0");
         badsText.text = globalBadHits.ToString();
         oksText.text = globalOKhits.ToString();
         goodsText.text = globalGoodHits.ToString();
-        hitsNotesText.text = (globalBadHits + globalGoodHits + globalOKhits).ToString() + " / ";
+        //hitsNotesText.text = (globalBadHits + globalGoodHits + globalOKhits).ToString() + " / ";
+        allNotesText.text = (globalBadHits + globalGoodHits + globalOKhits).ToString() + " / " + totalNotes.ToString();
         resultsScreen.SetActive(true);
         theMusic.Stop();
         theBS.gameObject.SetActive(false);
