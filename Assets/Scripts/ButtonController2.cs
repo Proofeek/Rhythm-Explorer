@@ -37,7 +37,7 @@ public class ButtonController2 : MonoBehaviour
         {
             Debug.Log("ПОПАЛ В ЦЕЛЬ");
 
-            buttonCollider.col.SendMessage("StartAnimDisappear");
+            buttonCollider.col.SendMessage("StartAnimDisappear", GetComponent<RectTransform>().transform.position);
             
             if((buttonCollider.col.transform.position.y > (gameObject.transform.position.y + 0.45)) || (buttonCollider.col.transform.position.y < (gameObject.transform.position.y - 0.45)))
             {

@@ -9,6 +9,10 @@ public class NoteObject : MonoBehaviour
 
     public Animator targetAnimator;
 
+    Vector3 button;
+
+    bool done = false;
+
     void Start()
     {
         GetComponent<SpriteRenderer>().enabled = false;
@@ -50,11 +54,13 @@ public class NoteObject : MonoBehaviour
         }
     }
     
-    void StartAnimDisappear()
+    void StartAnimDisappear(Vector3 buttonPos)
 	{
 
         GetComponent<Animator>().SetTrigger("Dis");
         GetComponent<CircleCollider2D>().enabled = false;
+        button = buttonPos;
+        done = true;
         /*
         //GetComponent<Animation>().Play(PlayMode.StopSameLayer);
         GetComponent<Animation>().Blend("TargetDisappear", 0.3f, 1.0f);
@@ -63,4 +69,12 @@ public class NoteObject : MonoBehaviour
             gameObject.SetActive(false);
 		}*/
     }
+	private void Update()
+	{
+		if (done)
+		{
+            gameObject.transform.position = button;
+            //Vector2.Lerp(gameObject.transform.position, button, Time.deltaTime*40);
+        }
+	}
 }
