@@ -21,7 +21,7 @@ public class NoteObject : MonoBehaviour
         //.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         
         if(other.tag == "ShadowActivator")
@@ -58,7 +58,7 @@ public class NoteObject : MonoBehaviour
 	{
 
         GetComponent<Animator>().SetTrigger("Dis");
-        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<SphereCollider>().enabled = false;
         button = buttonPos;
         done = true;
         /*

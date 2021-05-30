@@ -53,9 +53,9 @@ public class ButtonController2 : MonoBehaviour
                 GameManager.instance.NoteHitGood();
                 Debug.Log("Good hit");
             }
-
+            buttonCollider.canTargetDone = false;
             //buttonCollider.col.gameObject.SetActive(false);
-            
+
         }
         else
         {
@@ -76,7 +76,7 @@ public class ButtonController2 : MonoBehaviour
         GetComponent<Animator>().SetBool("ButtonPressed", false);
     }
 
-    void OnTouchStay(Vector2 point)
+    void OnTouchStay()
     {
             //theSR.sprite = pressedImage;
             bDown = false;

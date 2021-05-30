@@ -7,18 +7,19 @@ public class ButtonColliderScript : MonoBehaviour
 
     public bool canTargetDone;
 
-    public Collider2D col;
+    public Collider col;
     public ButtonController2 theBS;
     public ButtonsScript buttons;
     public Slider slider;
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         col = other;
         if (other.tag == "Target")
         {
             canTargetDone = true;
+            Debug.Log("CanTargetDone TRUE");
         }
         
         if(other.tag == "FinishSong")
@@ -44,7 +45,7 @@ public class ButtonColliderScript : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit(Collider other)
     {
         if (other.tag == "Target")
         {
@@ -54,6 +55,7 @@ public class ButtonColliderScript : MonoBehaviour
                 //Debug.Log("МИМО");
             }
             canTargetDone = false;
+            Debug.Log("CanTargetDone FALSE");
         }
     }
 }

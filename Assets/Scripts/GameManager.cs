@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public AudioSource theMusic;
     public BeatScroller theBS;
+    public ButtonsScript theButtonScript;
     public bool startPlaying;
     public bool godMode;
     public static GameManager instance;
-
+    
     public List<GameObject> hearts;
     public GameObject HP_heart;
     public GameObject HP_heartsContainer;
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     public GameObject resultsScreen;
     public GameObject gameOverScreen;
 
-    public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText;
+    public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText, NewHighscoreText;
 
     void Start()
     {
@@ -61,6 +63,9 @@ public class GameManager : MonoBehaviour
 
         currentHP = max_HP;
         addHPhearts(currentHP);
+
+        theButtonScript.gameObject.SetActive(false);
+        //PlayerPrefs.DeleteAll();
     }
 
     void Update()
@@ -208,6 +213,8 @@ public class GameManager : MonoBehaviour
 
     public void Finish()
     {
+        theButtonScript.gameObject.SetActive(false);
+        HP_heartsContainer.SetActive(false);
         missedText.text = globalMissedHits.ToString();
         //allNotesText.text = totalNotes.ToString();
         finalscoreText.text = currentScore.ToString("F0");
@@ -219,19 +226,29 @@ public class GameManager : MonoBehaviour
         resultsScreen.SetActive(true);
         theMusic.Stop();
         theBS.gameObject.SetActive(false);
+        if(currentScore > PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0))
+		{
+            NewHighscoreText.gameObject.SetActive(true);
+            PlayerPrefs.SetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, (int)currentScore);
+            Highscores.AddNewHighscore(PlayerPrefs.GetString("NickName", "Player") + "|" + SceneManager.GetActiveScene().name, PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0));
+        }
+       
     }
+
 
     public void GameOver()
     {
         theMusic.Stop();
         gameOverScreen.SetActive(true);
         theBS.gameObject.SetActive(false);
+        theButtonScript.gameObject.SetActive(false);
     }
 
     public void GameStart()
     {
         startPlaying = true;
         theBS.hasStarted = true;
+        theButtonScript.gameObject.SetActive(true);
         startGameScreen.SetActive(false);
         theMusic.Play();
     }
