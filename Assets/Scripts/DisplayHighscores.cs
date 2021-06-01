@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DisplayHighscores : MonoBehaviour
 {
@@ -24,9 +25,11 @@ public class DisplayHighscores : MonoBehaviour
 			highscoreFields[i].gameObject.SetActive(false);
 		}
 	}
+
 	
 	public void OnHighscoresDownloaded(Highscore[] highscoreList)
 	{
+
 		for (int i = 0; i < highscoreFields.Length; i++)
 		{
 			highscoreFields[i].text = i + 1 + ". ";
@@ -39,9 +42,12 @@ public class DisplayHighscores : MonoBehaviour
 					highscoreFields[i].gameObject.SetActive(false);
 				}
 				highscoreFields[i].text += highscoreList[i].username + " - " + highscoreList[i].score;
-				if(highscoreList[i].username == PlayerPrefs.GetString("NickName", "Player"))
+				if (SceneManager.GetActiveScene().name != "Main_Menu")
 				{
-					highscoreFields[i].color = Color.red;
+					if (highscoreList[i].username == PlayerPrefs.GetString("NickName", "Player"))
+					{
+						highscoreFields[i].color = Color.red;
+					}
 				}
 			}
 		}

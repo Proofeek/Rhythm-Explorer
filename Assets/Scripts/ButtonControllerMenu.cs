@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class ButtonControllerMenu : MonoBehaviour
 {
     public Animator ButtonAnimator;
+    public float SecondsWait = 0.4f;
 
     [System.Serializable]
     public class MyEventType : UnityEvent { }
@@ -41,7 +42,7 @@ public class ButtonControllerMenu : MonoBehaviour
 
     IEnumerator ChangePreset()
 	{
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(SecondsWait);
         OnButtonUp.Invoke();
     }
 }

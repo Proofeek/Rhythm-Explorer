@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject startGameScreen;
     public GameObject resultsScreen;
     public GameObject gameOverScreen;
+    public GameObject NickNameWindow;
 
     public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText, NewHighscoreText;
 
@@ -223,18 +224,29 @@ public class GameManager : MonoBehaviour
         goodsText.text = globalGoodHits.ToString();
         //hitsNotesText.text = (globalBadHits + globalGoodHits + globalOKhits).ToString() + " / ";
         allNotesText.text = (globalBadHits + globalGoodHits + globalOKhits).ToString() + " / " + totalNotes.ToString();
-        resultsScreen.SetActive(true);
+        
         theMusic.Stop();
         theBS.gameObject.SetActive(false);
-        if(currentScore > PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0))
+		if (PlayerPrefs.HasKey("NickName"))
 		{
-            NewHighscoreText.gameObject.SetActive(true);
-            PlayerPrefs.SetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, (int)currentScore);
-            Highscores.AddNewHighscore(PlayerPrefs.GetString("NickName", "Player") + "|" + SceneManager.GetActiveScene().name, PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0));
+            if (currentScore > PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0))
+            {
+                NewHighscoreText.gameObject.SetActive(true);
+                AddHighscore();
+            }
+            resultsScreen.SetActive(true);
         }
-       
+		else
+		{
+            NickNameWindow.SetActive(true);
+        }
     }
 
+    public void AddHighscore()
+	{
+        PlayerPrefs.SetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, (int)currentScore);
+        Highscores.AddNewHighscore(PlayerPrefs.GetString("NickName", "Player") + "|" + SceneManager.GetActiveScene().name, PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0));
+    }
 
     public void GameOver()
     {

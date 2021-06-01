@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Highscores : MonoBehaviour
 {
-
+	public GameObject levelName;
 	const string privateCode = "UyEqiqStpUqH1YX6y1ZQAAZwvx3bRYRE-h9nhpDSD7Uw";
 	const string publicCode = "60af66028f40bb64ec9cd54d";
 	const string webURL = "http://dreamlo.com/lb/";
@@ -18,6 +18,12 @@ public class Highscores : MonoBehaviour
 	{
 		highscoreDisplay = GetComponent<DisplayHighscores>();
 		instance = this;
+	}
+	private void Start()
+	{
+
+		//print(levelName.name);
+		DownloadHighscoresMainMenu(levelName.name);
 	}
 
 	public static void AddNewHighscore(string username, int score)
@@ -105,11 +111,12 @@ public class Highscores : MonoBehaviour
 	void FormatHighscoresMainMenu(string textStream, string level)
 	{
 		string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+
 		highscoresList = new Highscore[entries.Length];
 		int j = 0;
-		for (int i = 0; i < entries.Length; i++)
+		for (int k = 0; k < entries.Length; k++)
 		{
-			string[] entryInfo = entries[i].Split(new char[] { '|' });
+			string[] entryInfo = entries[k].Split(new char[] { '|' });
 			string username = entryInfo[0];
 			string levelName = entryInfo[1];
 			int score = int.Parse(entryInfo[2]);
