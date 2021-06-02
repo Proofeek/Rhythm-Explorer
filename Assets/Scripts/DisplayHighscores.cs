@@ -42,7 +42,7 @@ public class DisplayHighscores : MonoBehaviour
 					highscoreFields[i].gameObject.SetActive(false);
 				}
 				highscoreFields[i].text += highscoreList[i].username + " - " + highscoreList[i].score;
-				if (SceneManager.GetActiveScene().name != "Main_Menu")
+				if (SceneManager.GetActiveScene().buildIndex > 0)
 				{
 					if (highscoreList[i].username == PlayerPrefs.GetString("NickName", "Player"))
 					{
