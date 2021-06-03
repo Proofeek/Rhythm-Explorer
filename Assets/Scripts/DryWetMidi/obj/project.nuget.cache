@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "9axR5zpuhwPH9cjmiCaDFK5koQqVM8+9Y56WGhppX9dJuPNC/q34/y9eR0gi2cDFLWoYzGm4EbiCut5sb4cWew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kiill\\Desktop\\RhytmGame\\drywetmidi-develop\\DryWetMidi\\Melanchall.DryWetMidi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kiill\\.nuget\\packages\\microsoft.build.tasks.git\\1.0.0\\microsoft.build.tasks.git.1.0.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\kiill\\.nuget\\packages\\microsoft.sourcelink.common\\1.0.0\\microsoft.sourcelink.common.1.0.0.nupkg.sha512",
+    "C:\\Users\\kiill\\.nuget\\packages\\microsoft.sourcelink.github\\1.0.0\\microsoft.sourcelink.github.1.0.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

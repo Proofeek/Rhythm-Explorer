@@ -49,8 +49,10 @@ public class GameManager : MonoBehaviour
     public GameObject resultsScreen;
     public GameObject gameOverScreen;
     public GameObject NickNameWindow;
+    public GameObject pauseButton;
+    public GameObject pauseScreen;
 
-    public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText, NewHighscoreText;
+    public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText, NewHighscoreText, pauseScoreText;
 
     void Start()
     {
@@ -64,7 +66,6 @@ public class GameManager : MonoBehaviour
 
         currentHP = max_HP;
         addHPhearts(currentHP);
-
         theButtonScript.gameObject.SetActive(false);
         //PlayerPrefs.DeleteAll();
     }
@@ -242,6 +243,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PauseMenu()
+	{
+        theButtonScript.gameObject.SetActive(false);
+        HP_heartsContainer.SetActive(false);
+        pauseScoreText.text = currentScore.ToString("F0");
+        theMusic.Stop();
+        theBS.gameObject.SetActive(false);
+        if (PlayerPrefs.HasKey("NickName"))
+        {
+            if (currentScore > PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0))
+            {
+                NewHighscoreText.gameObject.SetActive(true);
+                AddHighscore();
+            }
+            pauseScreen.SetActive(true);
+            pauseButton.SetActive(false);
+        }
+        else
+        {
+            NickNameWindow.SetActive(true);
+        }
+    }
+
     public void AddHighscore()
 	{
         PlayerPrefs.SetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, (int)currentScore);
@@ -263,6 +287,7 @@ public class GameManager : MonoBehaviour
         theButtonScript.gameObject.SetActive(true);
         startGameScreen.SetActive(false);
         theMusic.Play();
+        pauseButton.SetActive(true);
     }
 
     public void addHPhearts(int numberOfHearts)

@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class DisplayHighscores : MonoBehaviour
 {
-
+	public GameObject content;
 	public Text[] highscoreFields;
+	private GameObject[] m_gameObjects;
 	Highscores highscoresManager;
 
 	void Start()
@@ -20,10 +21,10 @@ public class DisplayHighscores : MonoBehaviour
 
 		highscoresManager = GetComponent<Highscores>();
 		StartCoroutine("RefreshHighscores");*/
-		for (int i = 0; i < highscoreFields.Length; i++)
+		/*for (int i = 0; i < highscoreFields.Length; i++)
 		{
 			highscoreFields[i].gameObject.SetActive(false);
-		}
+		}*/
 	}
 
 	
@@ -47,6 +48,49 @@ public class DisplayHighscores : MonoBehaviour
 					if (highscoreList[i].username == PlayerPrefs.GetString("NickName", "Player"))
 					{
 						highscoreFields[i].color = Color.red;
+					}
+				}
+			}
+		}
+	}
+	bool gov = true;
+	public void OnHighscoresDownloadedMainMenu(Highscore[] highscoresListMain)
+	{
+
+		for (int i = 0; i < content.transform.childCount; i++)
+		{
+
+			for (int j = 0; j < highscoresListMain.Length; j++)
+			{
+
+				if (j < content.transform.GetChild(i).transform.Find("Scores").transform.childCount)
+				{
+					m_gameObjects = new GameObject[content.transform.GetChild(i).transform.Find("Scores").transform.childCount];
+					m_gameObjects[j] = content.transform.GetChild(i).transform.Find("Scores").transform.GetChild(j).gameObject;
+					highscoreFields[j] = m_gameObjects[j].GetComponent<Text>();
+					highscoreFields[j].text = "";
+				}
+
+
+				string[] entryInfo = highscoresListMain[j].username.Split(new char[] { '|' });
+				string username = entryInfo[0];
+				string levelName = entryInfo[1];
+
+				if (levelName == content.transform.GetChild(i).name)
+				{
+					gov = true;
+					for (int k = 0; k < content.transform.GetChild(i).transform.Find("Scores").transform.childCount; k++)
+					{
+						if (content.transform.GetChild(i).transform.Find("Scores").transform.GetChild(k).GetComponent<Text>().text == "" &&gov)
+						{
+							highscoreFields[k].gameObject.SetActive(true);
+							if (highscoresListMain[k].score == 0)
+							{
+								highscoreFields[k].gameObject.SetActive(false);
+							}
+							highscoreFields[k].text =(k+1)+". "+ username + " - " + highscoresListMain[j].score;
+							gov = false;
+						}
 					}
 				}
 			}

@@ -12,6 +12,7 @@ public class Highscores : MonoBehaviour
 
 	DisplayHighscores highscoreDisplay;
 	public Highscore[] highscoresList;
+	public Highscore[] highscoresListMain;
 	static Highscores instance;
 
 	void Awake()
@@ -23,7 +24,7 @@ public class Highscores : MonoBehaviour
 	{
 
 		//print(levelName.name);
-		DownloadHighscoresMainMenu(levelName.name);
+		DownloadHighscoresMainMenu();
 	}
 
 	public static void AddNewHighscore(string username, int score)
@@ -51,20 +52,20 @@ public class Highscores : MonoBehaviour
 	{
 			StartCoroutine("DownloadHighscoresFromDatabase");	
 	}
-	public void DownloadHighscoresMainMenu(string level)
+	public void DownloadHighscoresMainMenu()
 	{
-		instance.StartCoroutine(instance.DownloadHighscoresFromDatabaseMainMenu(level));
+		instance.StartCoroutine("DownloadHighscoresFromDatabaseMainMenu");
 	}
 
-	IEnumerator DownloadHighscoresFromDatabaseMainMenu(string level)
+	IEnumerator DownloadHighscoresFromDatabaseMainMenu()
 	{
 		WWW www = new WWW(webURL + publicCode + "/pipe/");
 		yield return www;
 
 		if (string.IsNullOrEmpty(www.error))
 		{
-			FormatHighscoresMainMenu(www.text, level);
-			highscoreDisplay.OnHighscoresDownloaded(highscoresList);
+			FormatHighscoresMainMenu(www.text);
+			highscoreDisplay.OnHighscoresDownloadedMainMenu(highscoresListMain);
 		}
 		else
 		{
@@ -108,25 +109,19 @@ public class Highscores : MonoBehaviour
 		}
 	}
 
-	void FormatHighscoresMainMenu(string textStream, string level)
+	void FormatHighscoresMainMenu(string textStream)
 	{
 		string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 
-		highscoresList = new Highscore[entries.Length];
-		int j = 0;
+		highscoresListMain = new Highscore[entries.Length];
 		for (int k = 0; k < entries.Length; k++)
 		{
 			string[] entryInfo = entries[k].Split(new char[] { '|' });
 			string username = entryInfo[0];
 			string levelName = entryInfo[1];
+			string usernameAndLevel = username + "|" + levelName;
 			int score = int.Parse(entryInfo[2]);
-			//print("ТО самое|"+username + levelName + score);
-			if (levelName == level)
-			{
-				highscoresList[j] = new Highscore(username, score);
-				print("j=" + j + highscoresList[j].username + ": " + highscoresList[j].score);
-				j++;
-			}
+			highscoresListMain[k] = new Highscore(usernameAndLevel, score);
 		}
 	}
 
