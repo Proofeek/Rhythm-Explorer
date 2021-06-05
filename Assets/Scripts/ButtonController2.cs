@@ -39,11 +39,11 @@ public class ButtonController2 : MonoBehaviour
 
             buttonCollider.col.SendMessage("StartAnimDisappear", GetComponent<RectTransform>().transform.position);
             
-            if((buttonCollider.col.transform.position.y > (gameObject.transform.position.y + 0.45)) || (buttonCollider.col.transform.position.y < (gameObject.transform.position.y - 0.45)))
+            if((buttonCollider.col.transform.position.y > (gameObject.transform.position.y + 1)) || (buttonCollider.col.transform.position.y < (gameObject.transform.position.y - 1)))
             {
                 GameManager.instance.NoteHitBad();
                 Debug.Log("BAD hit");
-            }else if((buttonCollider.col.transform.position.y > (gameObject.transform.position.y + 0.25)) || (buttonCollider.col.transform.position.y < (gameObject.transform.position.y - 0.25)))
+            }else if((buttonCollider.col.transform.position.y > (gameObject.transform.position.y + 0.5)) || (buttonCollider.col.transform.position.y < (gameObject.transform.position.y - 0.5)))
             {
                 GameManager.instance.NoteHitOK();
                 Debug.Log("OK hit");
@@ -57,11 +57,11 @@ public class ButtonController2 : MonoBehaviour
             //buttonCollider.col.gameObject.SetActive(false);
 
         }
-        else
+        /*else
         {
             GameManager.instance.NoteMissed();
             Debug.Log("нажал мимо");
-        }
+        }*/
 
         //light1.gameObject.SetActive(true);
         GetComponent<Animator>().SetBool("ButtonPressed", true);

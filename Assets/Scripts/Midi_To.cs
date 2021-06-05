@@ -5,6 +5,7 @@ using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
 using System.IO;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Midi_To : MonoBehaviour
 {
@@ -17,9 +18,11 @@ public class Midi_To : MonoBehaviour
 
     public BeatScroller theBS;
 
+    public bool prep;
+
     void Start()
     {
-        ConvertMidiToText("C:/Users/kiill/Desktop/RhytmGame/Elev2.mid", "C:/Users/kiill/Desktop/RhytmGame/midi2.txt");
+        ConvertMidiToText("C:/Users/kiill/Desktop/RhytmGame/"+ SceneManager.GetActiveScene().name + ".mid", "C:/Users/kiill/Desktop/RhytmGame/"+ SceneManager.GetActiveScene().name +".txt");
         ConvertTextToGameObjects();
     }
 
@@ -46,7 +49,7 @@ public class Midi_To : MonoBehaviour
 
     public void ConvertTextToGameObjects()
     {
-        string[] entries = File.ReadAllText("C:/Users/kiill/Desktop/RhytmGame/midi2.txt").Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        string[] entries = File.ReadAllText("C:/Users/kiill/Desktop/RhytmGame/" + SceneManager.GetActiveScene().name + ".txt").Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 
         for (int i = 0; i < entries.Length; i++)
         {
@@ -58,25 +61,29 @@ public class Midi_To : MonoBehaviour
                 GameObject HeartClone = Instantiate(Target1L);
                 HeartClone.transform.SetParent(b1.transform, false);
                 HeartClone.name = "Target_1L_" + (b1.transform.childCount);
-                HeartClone.transform.position = new Vector3(0f, ((noteTime/96) +1), 0f);
+                HeartClone.transform.position = new Vector3(0f, ((noteTime/96)), 0f);
             }
             if (noteName == 61) //MID
             {
                 GameObject HeartClone = Instantiate(Target2L);
                 HeartClone.transform.SetParent(b2.transform, false);
                 HeartClone.name = "Target_2L_" + (b2.transform.childCount);
-                HeartClone.transform.position = new Vector3(0f, ((noteTime / 96) + 1), 0f);
+                HeartClone.transform.position = new Vector3(0f, ((noteTime / 96)), 0f);
             }
             if (noteName == 60) //RIGHT
             {
                 GameObject HeartClone = Instantiate(Target1R);
                 HeartClone.transform.SetParent(b3.transform, false);
                 HeartClone.name = "Target_1R_" + (b3.transform.childCount);
-                HeartClone.transform.position = new Vector3(0f, ((noteTime / 96) + 1), 0f);
+                HeartClone.transform.position = new Vector3(0f, ((noteTime / 96)), 0f);
             }
 
 
         }
-        theBS.Prep();
+		if (prep)
+		{
+            theBS.Prep();
+        }
+        
     }
 }

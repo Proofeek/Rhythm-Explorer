@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseButton;
     public GameObject pauseScreen;
 
-    public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText, NewHighscoreText, pauseScoreText;
+    public Text badsText, oksText, goodsText, missedText, finalscoreText, allNotesText, hitsNotesText, scoreText, multiText, multiDrumText, DrumComboText, ComboText, NewHighscoreText, pauseScoreText, gameoverScoreText;
 
     void Start()
     {
@@ -278,6 +278,22 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(true);
         theBS.gameObject.SetActive(false);
         theButtonScript.gameObject.SetActive(false);
+        HP_heartsContainer.SetActive(false);
+        gameoverScoreText.text = currentScore.ToString("F0");
+        if (PlayerPrefs.HasKey("NickName"))
+        {
+            if (currentScore > PlayerPrefs.GetInt("HighScore" + "|" + SceneManager.GetActiveScene().name, 0))
+            {
+                NewHighscoreText.gameObject.SetActive(true);
+                AddHighscore();
+            }
+            pauseScreen.SetActive(true);
+            pauseButton.SetActive(false);
+        }
+        else
+        {
+            NickNameWindow.SetActive(true);
+        }
     }
 
     public void GameStart()

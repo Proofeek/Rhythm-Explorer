@@ -24,9 +24,18 @@ public class BeatScroller : MonoBehaviour
     public float colliderScale;
 
     public float correction = -1.2f;
+    public bool Prep1;
 
-    // Start is called before the first frame update
-    public void Prep()
+
+	private void Start()
+	{
+		if (Prep1)
+		{
+            Prep();
+        }
+
+    }
+	public void Prep()
     {
         GameObject[] allLaserSpots = GameObject.FindGameObjectsWithTag("LaserSpot");
         foreach(GameObject laserspot in allLaserSpots)
@@ -110,7 +119,7 @@ public class BeatScroller : MonoBehaviour
         GameObject[] allLasers = GameObject.FindGameObjectsWithTag("Laser");
         foreach (GameObject target in allLasers)
         {
-            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + posYforLaser, 0f);
+            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + posYforLaser, 85);
         }
 
         foreach (GameObject target in allTargets)

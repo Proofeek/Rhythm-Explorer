@@ -19,6 +19,7 @@ public class LaserButtonController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("knobPressed: " + knobPressed);
         if(knobPressed && !colliderLaser.wasOnStartPoint)
         {
             gameObject.SetActive(false);
@@ -51,14 +52,14 @@ public class LaserButtonController : MonoBehaviour
         }
         knobPressed = false;
     }
-
+    /*
     void OnTouchStay()
     {
-        knobPressed = true;
+
         //targetPos = new Vector2(point.x, targetPos.y);
         // Debug.Log("x= " + point.x);
         // Debug.Log("y= " + point.y);
-    }
+    }*/
 
     void OnTouchExit()
     {

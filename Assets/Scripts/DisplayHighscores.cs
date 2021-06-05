@@ -21,10 +21,10 @@ public class DisplayHighscores : MonoBehaviour
 
 		highscoresManager = GetComponent<Highscores>();
 		StartCoroutine("RefreshHighscores");*/
-		/*for (int i = 0; i < highscoreFields.Length; i++)
+		for (int i = 0; i < highscoreFields.Length; i++)
 		{
 			highscoreFields[i].gameObject.SetActive(false);
-		}*/
+		}
 	}
 
 	

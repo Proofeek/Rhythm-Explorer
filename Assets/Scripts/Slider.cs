@@ -6,7 +6,7 @@ public class Slider : MonoBehaviour
 {
 
     public LaserButtonController knob;
-    private Vector2 targetPos;
+    private Vector3 targetPos;
     void Start()
     {
         targetPos = knob.transform.position;
@@ -18,7 +18,7 @@ public class Slider : MonoBehaviour
         knob.transform.position = targetPos;
     }
 
-    void OnTouchStay(Vector2 point)
+    void OnTouchStay(Vector3 point)
     {
         Vector2 ray = new Vector2(point.x, point.y);
         RaycastHit2D[] hitColliders = Physics2D.RaycastAll(ray, Camera.main.transform.forward);
@@ -29,7 +29,9 @@ public class Slider : MonoBehaviour
         }
         
         
-        targetPos = new Vector2(point.x, targetPos.y);
+        targetPos = new Vector3(point.x, targetPos.y, targetPos.z);
+        knob.knobPressed = true;
+        Debug.Log("OntouchStay");
 
     }
 }
