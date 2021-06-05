@@ -30,19 +30,19 @@ public class ButtonColliderScript : MonoBehaviour
         {
             buttons.L1.gameObject.SetActive(false);
             buttons.L2.gameObject.SetActive(false);
-            //buttons.L3.gameObject.SetActive(false);
+            buttons.R1.gameObject.SetActive(false);
             slider.gameObject.SetActive(true);
 
         }
-
+        /*
         if (other.tag == "FinishKnob")
         {
             buttons.L1.gameObject.SetActive(true);
             buttons.L2.gameObject.SetActive(true);
-            //buttons.L3.gameObject.SetActive(true);
+            buttons.R1.gameObject.SetActive(true);
             slider.gameObject.SetActive(true);
 
-        }
+        }*/
     }
 
     void OnTriggerExit(Collider other)

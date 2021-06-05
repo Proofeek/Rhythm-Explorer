@@ -7,6 +7,10 @@ public class LaserButtonColliderScript : MonoBehaviour
 
     public LaserButtonController theLBS;
 
+    public GameObject Button1;
+    public GameObject Button2;
+    public GameObject Button3;
+
     public bool touchLaser;
     public bool wasOnStartPoint;
 
@@ -29,6 +33,7 @@ public class LaserButtonColliderScript : MonoBehaviour
         {
             touchLaser = true;
         }
+        /*
         if (other.tag == "FinishLaser")
         {
             theLBS.gameObject.SetActive(false);
@@ -36,6 +41,18 @@ public class LaserButtonColliderScript : MonoBehaviour
             wasOnStartPoint = false;
             theLBS.knobPressed = false;
             Debug.Log("5");
+        }*/
+
+        if (other.tag == "FinishKnob")
+		{
+            theLBS.gameObject.SetActive(false);
+            touchLaser = false;
+            wasOnStartPoint = false;
+            theLBS.knobPressed = false;
+            Debug.Log("55");
+            Button1.SetActive(true);
+            Button2.SetActive(true);
+            Button3.SetActive(true);
         }
     }
 
@@ -45,11 +62,12 @@ public class LaserButtonColliderScript : MonoBehaviour
         {
             touchLaser = false;
         }
+        /*
         if (other.tag == "StartLaser" && !theLBS.knobPressed)
         {
             theLBS.gameObject.SetActive(false);
             Debug.Log("6");
-        }
+        }*/
 
     }
 }

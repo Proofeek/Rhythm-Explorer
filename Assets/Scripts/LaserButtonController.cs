@@ -14,11 +14,11 @@ public class LaserButtonController : MonoBehaviour
     void Start()
     {
         theSR = GetComponent<SpriteRenderer>();
-
+        GetComponent<Animator>().SetTrigger("Laser");
     }
 
     void Update()
-    {
+    {/*
         Debug.Log("knobPressed: " + knobPressed);
         if(knobPressed && !colliderLaser.wasOnStartPoint)
         {
@@ -30,9 +30,21 @@ public class LaserButtonController : MonoBehaviour
             gameObject.SetActive(false);
             Debug.Log("2");
         }
+
         if (knobPressed && colliderLaser.touchLaser && colliderLaser.wasOnStartPoint)
         {
             GameManager.instance.LaserHitGetPoints();
+        }
+        */
+        if (knobPressed && colliderLaser.touchLaser)
+        {
+            GameManager.instance.LaserHitGetPoints();
+            GetComponent<Animator>().SetBool("ButtonLaser", true);
+
+        }
+		else
+		{
+            GetComponent<Animator>().SetBool("ButtonLaser", false);
         }
     }
 
@@ -45,30 +57,35 @@ public class LaserButtonController : MonoBehaviour
 
     void OnTouchUp()
     {
+        /*
         if (colliderLaser.wasOnStartPoint)
         {
             gameObject.SetActive(false);
             Debug.Log("3");
-        }
+        }*/
         knobPressed = false;
+       
     }
-    /*
+    
     void OnTouchStay()
     {
-
+        knobPressed = true;
+        Debug.Log("OntouchStay");
         //targetPos = new Vector2(point.x, targetPos.y);
         // Debug.Log("x= " + point.x);
         // Debug.Log("y= " + point.y);
-    }*/
+    }
 
     void OnTouchExit()
     {
         knobPressed = false;
+        /*
         if (colliderLaser.wasOnStartPoint)
         {
             gameObject.SetActive(false);
             Debug.Log("4");
-        }
+        }*/
+
     }
     /*
     void OnTriggerEnter2D(Collider2D other)

@@ -10,12 +10,17 @@ public class Slider : MonoBehaviour
     void Start()
     {
         targetPos = knob.transform.position;
+
     }
 
     void Update()
     {
-        //knob.position = Vector2.Lerp(knob.position, targetPos,Time.deltaTime*20);
+		//knob.position = Vector2.Lerp(knob.position, targetPos,Time.deltaTime*20);
+
+		if (knob.knobPressed) 
+        { 
         knob.transform.position = targetPos;
+        }
     }
 
     void OnTouchStay(Vector3 point)
@@ -27,11 +32,11 @@ public class Slider : MonoBehaviour
         {
             Debug.Log(iter.collider.name);
         }
-        
-        
-        targetPos = new Vector3(point.x, targetPos.y, targetPos.z);
-        knob.knobPressed = true;
-        Debug.Log("OntouchStay");
+
+        if (knob.knobPressed)
+        {
+            targetPos = new Vector3(point.x, targetPos.y, targetPos.z);
+        }
 
     }
 }
