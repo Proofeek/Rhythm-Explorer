@@ -32,6 +32,7 @@ public class ButtonColliderScript : MonoBehaviour
             buttons.L2.gameObject.SetActive(false);
             buttons.R1.gameObject.SetActive(false);
             slider.gameObject.SetActive(true);
+            slider.knob.AnimLaser();
 
         }
         /*

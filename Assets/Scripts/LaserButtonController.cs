@@ -14,9 +14,13 @@ public class LaserButtonController : MonoBehaviour
     void Start()
     {
         theSR = GetComponent<SpriteRenderer>();
-        GetComponent<Animator>().SetTrigger("Laser");
     }
 
+
+    public void AnimLaser()
+	{
+        GetComponent<Animator>().SetTrigger("Laser");
+    }
     void Update()
     {/*
         Debug.Log("knobPressed: " + knobPressed);
