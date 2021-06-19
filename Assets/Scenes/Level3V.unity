@@ -21917,6 +21917,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theLBS: {fileID: 1719350426}
+  Button1: {fileID: 0}
+  Button2: {fileID: 0}
+  Button3: {fileID: 0}
+  Slider: {fileID: 0}
   touchLaser: 0
   wasOnStartPoint: 0
 --- !u!50 &424075049
@@ -50057,7 +50061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 298.9995}
+  m_AnchoredPosition: {x: 0, y: 299}
   m_SizeDelta: {x: -458.3601, y: -3022.8606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971494434
@@ -55395,7 +55399,7 @@ MonoBehaviour:
   beatCount16: 0
   imageScale: 10
   colliderScale: 0
-  correction: 3.6
+  correction: 4.9
   Prep1: 1
 --- !u!1 &1086394940
 GameObject:
@@ -55764,7 +55768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -957.0009}
+  m_AnchoredPosition: {x: 0, y: -957}
   m_SizeDelta: {x: 776.38, y: 387.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094393125
@@ -66519,7 +66523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 231, y: -487}
+  m_AnchoredPosition: {x: 230.99997, y: -487}
   m_SizeDelta: {x: -1570.26, y: 375.77}
   m_Pivot: {x: 0.000000048428774, y: 1}
 --- !u!1 &1308176679

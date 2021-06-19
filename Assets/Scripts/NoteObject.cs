@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class NoteObject : MonoBehaviour
 {
-    public int color; //0.Purple; 1.Green; 2.Red; 3.Yellow; 4.Blue;
+    public int color; //0.Purple; 1.Green; 2.Red; 3.Yellow; 4.Blue; 5.Gray;
 
     public Animator targetAnimator;
 
@@ -45,6 +45,11 @@ public class NoteObject : MonoBehaviour
             if(color == 4){
                 GetComponent<Animator>().SetTrigger("Blue");
             }
+            if (color == 5)
+            {
+                GetComponent<Animator>().SetTrigger("Gray");
+            }
+
         }
             
 
