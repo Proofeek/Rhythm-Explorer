@@ -14,6 +14,11 @@ public class Start_levels : MonoBehaviour
         StartCoroutine(LoadLevel(sceneIndex));
     }
 
+    public void RestartLevel()
+	{
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+	}
+
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetActive(true);
